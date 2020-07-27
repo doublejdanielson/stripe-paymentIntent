@@ -32,10 +32,11 @@ export default function CheckoutForm() {
     if (result.error) {
       // Show error to your customer (e.g., insufficient funds)
       console.log(result.error.message);
+      alert("Sorry, insufficient funds. Please come back when you've saved more pennies.")
     } else {
       // The payment has been processed!
       if (result.paymentIntent.status === 'succeeded') {
-        alert("You have won the Internet - wear your acomplishment with pride")
+        alert("You have won the Internet - wear your accomplishment with pride")
         // Show a success message to your customer
         // There's a risk of the customer closing the window before callback
         // execution. Set up a webhook or plugin to listen for the

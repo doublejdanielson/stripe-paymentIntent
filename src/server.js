@@ -9,15 +9,19 @@ const app = express();
 
 app.get('/secret', async (req, res) => {
   console.log('Secret Requested')
-  const paymentIntent = await stripe.paymentIntents.create({
-    amount: 11.11,
+  const intent = await stripe.paymentIntents.create({
+    amount: 1111,
     currency: 'usd',
     metadata: {integration_check: 'accept_a_payment'},
   });
 
-  res.json({client_secret: paymentIntent.client_secret});
+  res.json({client_secret: intent.client_secret});
 });
 
-app.listen(3001, () => {
-  console.log('server running on localhost:3001');
+//Testing out a local server
+//app.listen(3001, () => {
+  //console.log('server running on localhost:3001');
+
+  app.listen(3000, () => {
+    console.log('Running on port 3000');
 });
