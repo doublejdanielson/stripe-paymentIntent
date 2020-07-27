@@ -7,11 +7,13 @@ export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
 
+  // When the confirm payment button is clicked...
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
 
+    // Get the client secret key and pass it back via json
     const response = await fetch('/secret');
     const {client_secret: clientSecret} = await response.json();
 
@@ -21,6 +23,7 @@ export default function CheckoutForm() {
         card: elements.getElement(CardElement),
         billing_details: {
           name: 'Jenny Rosen',
+          // Note the instruction from step 4: Pass additional billing details, such as the cardholder name and address, to the billing_details hash.
         },
       }
     
